@@ -1,0 +1,44 @@
+function_prompt_natural_language: |
+  Describe in detail how to calculate the value of the {property_name} for a molecule, taking into consideration the following specifics:
+  * The dataset includes multiple atom types: H, C, N, O, P, S, Cl, Br, F, etc. Consider the diversity of atom types when discussing atom-specific properties or behaviors.
+  * You have access to the molecule's adjacency matrix, node features (Atomic Number, Chirality, Degree of Connectivity, Formal Charge, Number of Hydrogen Atoms, Number of Radical Electrons, Hybridization Type, Is Aromatic, Is In Ring), and edge features (Bond Type, Bond Stereochemistry, Is Conjugated).
+  Based on these specifics, please provide a thorough explanation for computing the {property_name} in natural language.
+
+function_prompt_function_generation: |
+  Given your detailed description for calculating the {property_name}, please create a comprehensive Python function. This function should:
+  * Accept the adjacency matrix, node features (especially considering the 'Number of Hydrogen Atoms'), and edge features as input.
+  * Ensure the function accounts for a variety of atom types, and not just the common ones like O, N, and H.
+  * Output a floating-point value representing the {property_name} for the molecule.
+  Make sure the function is generalized enough to handle diverse molecules and atom types present in the dataset.
+
+  Here's an example of an adjacency matrix: 
+  tensor([[0., 1., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.],
+          [1., 0., 1., 1., 0., 0., 0., 0., 0., 0., 0., 0., 0.],
+          [0., 1., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.],
+          [0., 1., 0., 0., 1., 1., 0., 0., 0., 0., 0., 0., 0.],
+          [0., 0., 0., 1., 0., 0., 0., 0., 0., 0., 0., 0., 0.],
+          [0., 0., 0., 1., 0., 0., 1., 0., 0., 0., 1., 0., 0.],
+          [0., 0., 0., 0., 0., 1., 0., 1., 0., 0., 0., 0., 0.],
+          [0., 0., 0., 0., 0., 0., 1., 0., 1., 0., 0., 0., 0.],
+          [0., 0., 0., 0., 0., 0., 0., 1., 0., 1., 0., 1., 0.],
+          [0., 0., 0., 0., 0., 0., 0., 0., 1., 0., 1., 0., 0.],
+          [0., 0., 0., 0., 0., 1., 0., 0., 0., 1., 0., 0., 0.],
+          [0., 0., 0., 0., 0., 0., 0., 0., 1., 0., 0., 0., 1.],
+          [0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 1., 0.]])
+
+  Here's an example of node features:
+  [{'Atomic Number': 6, 'Chirality': 'CHI_UNSPECIFIED', 'Degree of Connectivity': 4, 'Formal Charge': 0, 'Number of Hydrogen Atoms': 3, 'Number of Radical Electrons': 0, 'Hybridization Type': 'SP3', 'Is Aromatic': False, 'Is In Ring': False},
+   {'Atomic Number': 7, 'Chirality': 'CHI_UNSPECIFIED', 'Degree of Connectivity': 3, 'Formal Charge': 0, 'Number of Hydrogen Atoms': 0, 'Number of Radical Electrons': 0, 'Hybridization Type': 'SP2', 'Is Aromatic': False, 'Is In Ring': False}, ...]
+
+  Here's an example of edge feature list:
+  [{'Bond Type': 'SINGLE', 'Bond Stereochemistry': 'STEREONONE', 'Is Conjugated': False},
+   {'Bond Type': 'SINGLE', 'Bond Stereochemistry': 'STEREONONE', 'Is Conjugated': False}]
+
+system_prompt_function_generation: |
+  Please generate a well-structured, runnable Python function that adheres to the following specifications:
+  - The function must accept three arguments: 'adjacency_matrix', 'node_features', and 'edge_features'.
+  - The function is expected to calculate and return a floating-point value representing a specific property of a molecule (the property name will be provided).
+  - Ensure the function includes appropriate comments for clarity.
+  - The function should be ready to execute in a Python environment.
+  - Output should strictly be the Python function code with no additional explanatory text or examples.
+  This function is intended for external use and should be complete and ready to run as-is.

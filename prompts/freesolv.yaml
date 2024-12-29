@@ -1,0 +1,52 @@
+GPT-3.5 turbo:
+  individual_prompts:
+    step_1:
+      Identify {num_properties} molecular properties relevant for determining
+      a molecule's hydration free energy in water. Output only the properties, each
+      on a new line.
+    step_2:
+      'For the compound "{compound_name}", provide numerical estimates for the
+      following properties: {property_list}'
+    step_3:
+      "After training a Linear Model on the FreeSolv dataset and performing\
+      \ feature selection using the AIC information criterion, the following features\
+      \ were found to be important for predicting a molecule's hydration free energy\
+      \ in water:\n{best_features}\nThe following features were found\
+      \ to be unimportant:\n{non_best_features}\nCould you please suggest\
+      \ {num_features} new properties that are likely to be important for determining a molecule's\
+      \ hydration free energy in water? These new properties should not include any\
+      \ from the lists above. Output only the properties, each on a new line."
+    step_3.2:
+      "After training a Linear Model on the FreeSolv dataset and performing\
+      \ feature selection using the AIC information criterion, the following features\
+      \ were found to be important for predicting a molecule's hydration free energy\
+      \ in water:\n\n* Molecular weight\n* Number of hydrogen bond donors\n* Number of rotatable bonds\n* Topological polar\
+      \ surface area\n* Number of nitrogen atoms\n* Number of lone pairs\n* Number of sp2 hybridized carbons\nThe following features were found\
+      \ to be unimportant: \n\n* Hydrophobicity\n* Solubility\n* Lipophilicity\n*\
+      \ Number of aromatic rings\n* Number of halogen atoms\n* Number of oxygen atoms\n\
+      * Number of sulfur atoms\n* Number of carbon atoms\n* Number of double bonds\n\
+      * Number of triple bonds\n* Number of chiral centers\n* Number of rings\n* Number\
+      \ of heteroatoms\n* Number of electronegative atoms\n* Number of hydrogen bond acceptors\
+      * Van der Waals surface area\n* Partial charge distribution\n* Dipole moment\n* Conformational entropy\
+      \n* Number of sp3 hybridized carbons\n* Electronegativity difference between atoms\n* Number of pi electrons\
+      \n* Number of metal atoms\n* Isoelectric point\n* Number of sigma bonds\n* Vibrational frequency\n* \
+      Molecular orbital energies\nCould you please suggest\
+      \ 13 other new properties that are likely to be important for determining a molecule's\
+      \ hydration free energy in water? These new properties should not include any\
+      \ from the lists above. Output only the properties, each on a new line."
+  system_prompts:
+    step_1:
+      Please provide responses only in a bullet list format, with entries separated
+      by commas. Elaboration or explanation beyond the bullet points is unnecessary.
+    step_2:
+      "Please provide responses only in a bullet list format, with entries separated
+      by commas. Elaboration or explanation beyond the bullet points is unnecessary.
+      Provide numerical estimates for various molecular properties. Each property
+      and its numerical value should be listed on separate lines in the format 'property
+      name: numerical value (annotation)'. If a property typically results in a binary
+      value, represent 'Yes' as '1' and 'No' as '0' with annotations. For
+      ordinal values like Small, Medium, and Large, use '1', '2', and '3' respectively
+      and annotate with their string representations. Properties that have units should
+      have those units included as annotations. All values should be convertible to
+      floating point numbers. Avoid using qualitative descriptors like 'Polarized'
+      or 'Non-uniform'."

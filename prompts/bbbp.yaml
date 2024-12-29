@@ -1,0 +1,38 @@
+GPT-3.5 turbo:
+  individual_prompts:
+    step_1:
+      Identify {num_properties} molecular properties relevant for determining
+      a molecule's blood-brain barrier penetration (permeability). Output only the
+      properties, each on a new line.
+    step_2:
+      'For the compound "{compound_name}", provide numerical estimates for the
+      following properties: {property_list}'
+    step_3:
+      "After training a Linear Model on the BACE dataset and performing feature
+      selection using the AIC information criterion, the following features were found
+      to be important for predicting a molecule's blood-brain barrier penetration
+      (permeability):
+      {best_features}
+      The following features were found to be not important for predicting a molecule'sblood-brain barrier penetration
+      (permeability):
+      {non_best_features}
+      Could you please suggest {num_features} new properties that are likely
+      to be important for determining a molecule's blood-brain barrier penetration
+      (permeability)? These new properties should not include
+      any from the lists above. Output only the properties, each on a new line."
+  system_prompts:
+    step_1:
+      Please provide responses only in a bullet list format, with entries separated
+      by commas. Elaboration or explanation beyond the bullet points is unnecessary.
+    step_2:
+      "Please provide responses only in a bullet list format, with entries separated
+      by commas. Elaboration or explanation beyond the bullet points is unnecessary.
+      Provide numerical estimates for various molecular properties. Each property
+      and its numerical value should be listed on separate lines in the format 'property
+      name: numerical value (annotation)'. If a property typically results in a binary
+      value, represent 'Yes' as '1' and 'No' as '0' with annotations. For
+      ordinal values like Small, Medium, and Large, use '1', '2', and '3' respectively
+      and annotate with their string representations. Properties that have units should
+      have those units included as annotations. All values should be convertible to
+      floating point numbers. Avoid using qualitative descriptors like 'Polarized'
+      or 'Non-uniform'."

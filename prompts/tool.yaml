@@ -1,0 +1,17 @@
+system_prompt: |
+  Please list properties and their corresponding RDKit calculation code in the following format: 
+  - [property name]: `[code]`
+  Here are some examples: 
+  - Molecular weight: `val = rdkit.Chem.Descriptors.MolWt(mol)`
+  - Number of oxygen atoms: `val = len([atom for atom in mol.GetAtoms() if atom.GetAtomicNum() == 8])`
+  - Number of double bonds: `val = sum(1 for bond in mol.GetBonds() if bond.GetBondType() == rdkit.Chem.rdchem.BondType.DOUBLE)`
+
+individual_prompt: |
+  Given the properties: 
+  {property_list} 
+  Identify which can be calculated using RDKit. For those that can, provide the code in this format: 
+  - [property name]: `[code]` 
+  For those that can't, write: 
+  - [property name]: `` 
+  Assume RDKit libraries is imported as `import rdkit` and molecule variable 'mol' is given. 
+  Ensure the code stores result in variable 'val' and all library calls to RDKit exists.
