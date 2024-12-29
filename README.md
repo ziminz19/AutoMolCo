@@ -6,7 +6,16 @@ This repository contains the code of the COLING 2025 paper [Automated Molecular 
 
 ### Requirements
 
-AutoMolCo is tested on Ubuntu 22.04 and MacOS Sequoia 15.2 with Python 3.9.16. Make sure to install the proper [PyTorch](https://pytorch.org/) version that is compatible with your device. We recommand using conda to manage packages for this project.
+AutoMolCo is tested on Ubuntu 22.04 and MacOS Sequoia 15.2 with Python 3.9.16. Make sure to install the proper [PyTorch](https://pytorch.org/) version that is compatible with your device.
+
+1. Clone the repository to your machine and navigate to the root directory of this repo.
+
+```bash
+git clone https://github.com/ziminz19/AutoMolCo.git
+cd AutoMolCo
+```
+
+2. Create `conda` environment to manage Python package dependencies and use `pip3` to install the required packages.
 
 ```bash
 conda create -n AutoMolCo python=3.9.16
